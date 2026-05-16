@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png';
+import logos from '../assets/logos.png';
 import '../index.css';
 
 function NavBar() {
   // State to manage mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('#home')
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,11 +15,15 @@ function NavBar() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+  const handleNavLinkClick = (targetAnchor) => {
+    setActiveLink(targetAnchor);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header className="navbar">
       <div className="navbar-logo">
-        <div className="logo-icon"><img src={logo} alt="Everlight Logo" /></div>
+        <div className="logo-icon"><img src={logos} alt="Everlight Logo" /></div>
         <div className="logo-text">
           <span className="brand-title">EVERLIGHT</span>
           <span className="brand-subtitle">ACADEMY</span>
@@ -27,18 +32,35 @@ function NavBar() {
       
       {/* Conditionally add the 'open' class based on state */}
       <nav className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
-        <a href="#home" className="nav-link active" onClick={closeMobileMenu}>Home</a>
-        <a href="#about" className="nav-link" onClick={closeMobileMenu}>About Us</a>
-        <a href="#programs" className="nav-link" onClick={closeMobileMenu}>Programs</a>
-        <a href="#contact" className="nav-link" onClick={closeMobileMenu}>Contact</a>
-        {/* Mobile-only CTA button inside the menu */}
-        <button className="cta-button mobile-cta" onClick={closeMobileMenu}>Enroll Now</button>
+        <a 
+          href="#home" 
+          className={`nav-link ${activeLink === '#home' ? 'active' : ''}`} 
+          onClick={() => handleNavLinkClick('#home')}
+        >
+          Home
+        </a>
+        <a 
+          href="#about" 
+          className={`nav-link ${activeLink === '#about' ? 'active' : ''}`} 
+          onClick={() => handleNavLinkClick('#about')}
+        >
+          About Us
+        </a>
+        <a 
+          href="#programs" 
+          className={`nav-link ${activeLink === '#programs' ? 'active' : ''}`} 
+          onClick={() => handleNavLinkClick('#programs')}
+        >
+          Programs
+        </a>
+        <a 
+          href="#contact" 
+          className={`nav-link ${activeLink === '#contact' ? 'active' : ''}`} 
+          onClick={() => handleNavLinkClick('#contact')}
+        >
+          Contact
+        </a>
       </nav>
-
-      {/* Desktop-only CTA Button */}
-      <div className="navbar-actions desktop-cta">
-        <button className="cta-button">Enroll Now</button>
-      </div>
 
       {/* Hamburger Menu Toggle Icon */}
       <button 

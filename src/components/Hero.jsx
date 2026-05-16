@@ -16,12 +16,13 @@ function Hero() {
         </p>
         <button className="hero-cta">EXPLORE PROGRAMS</button>
       </div>
-
+      <span className="puzzel">🧩</span>
+      <span className="teddy">🧸</span>
+          <span className="paintbrush">🎨</span>
       <div className="hero-image-container">
         {/* Placeholder circle or illustration until you drop your image file in */}
         <div className="hero-image-fallback">
           {/* <img src={heroImage} alt="Happy kids playing at Everlight Academy" /> */}
-          <span className="kindergarten-emojis">🎨🧩🧸</span>
         </div>
       </div>
     </section>

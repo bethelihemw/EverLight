@@ -270,8 +270,6 @@ body {
   align-items: center;
   z-index: 2;
 }
-
-/* Fallback styling for layout visualization until you add an image */
 .hero-image-fallback {
   width: 100%;
   max-width: 500px;
@@ -284,19 +282,48 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-.kindergarten-emojis {
-  font-size: 4rem;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+.puzzel{
+  font-size: 6rem;
+  position: absolute;
+  top: 75%;
+  left: 10%;
 }
-
-/* Ensure navbar transitions smoothly over our hero */
+.teddy{
+  font-size: 6rem;
+  position: absolute;
+  top: 75%;
+  left: 80%;
+}
+.paintbrush{
+  font-size: 8rem;
+  position: absolute;
+  top: 10%;
+  left: 90%;
+}
 :global(.navbar) {
   background-color: transparent !important;
 }
 
 /* Responsive adjustment */
 @media (max-width: 968px) {
+  .puzzel{
+    font-size: 4rem;
+    position: absolute;
+    top: 44%;
+    left: 40%;
+  }
+  .teddy{
+    font-size: 4rem;
+    position: absolute;
+    top: 75%;
+    left: 80%;
+  }
+  .paintbrush{
+    font-size: 5rem;
+    position: absolute;
+    top: 7%;
+    left: 83%;
+  }
   .hero-container {
     flex-direction: column;
     text-align: center;
