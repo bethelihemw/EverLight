@@ -4,7 +4,7 @@ import './App.css'
 import About from './components/About.jsx'
 import Programs from './components/Programs.jsx'
 import Contacts from './components/Contacts.jsx'
-
+import Footer from './components/Footer.jsx'
 
 function App() {
 
@@ -15,6 +15,7 @@ function App() {
       <About />
       <Programs />
       <Contacts />
+      <Footer />
     </>
   )
 }

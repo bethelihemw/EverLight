@@ -17,13 +17,15 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 5%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background-color: var( --deep-blue); /* Seamless blend over the hero gradient later */
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .navbar-logo {
@@ -50,7 +52,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .brand-title {
   color: var(--text-light); /* Will contrast beautifully against the deep blue hero */
   font-weight: 800;
@@ -58,7 +59,6 @@ body {
   letter-spacing: 1px;
   line-height: 1;
 }
-
 .brand-subtitle {
   color: var(--vibrant-orange);
   font-weight: 600;
@@ -104,6 +104,88 @@ body {
 @media (max-width: 768px) {
   .navbar-links {
     display: none; /* We will add a mobile hamburger menu later */
+  }
+}
+/* --- Desktop Helpers --- */
+.mobile-cta {
+  display: none; /* Hidden on desktop screens */
+}
+
+.hamburger-toggle {
+  display: none; /* Hidden on desktop screens */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; /* Stays above the mobile overlay */
+}
+
+.hamburger-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-light);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* --- Responsive Media Query (Tablets & Phones) --- */
+@media (max-width: 768px) {
+  .desktop-cta {
+    display: none; /* Hide the standard desktop action button */
+  }
+
+  .hamburger-toggle {
+    display: flex; /* Display the hamburger bars */
+  }
+
+  /* Animating the hamburger icon into an 'X' when open */
+  .hamburger-toggle.activated .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger-toggle.activated .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-toggle.activated .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Transforming the links list into a modern mobile tray drop-down */
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen by default */
+    width: 40%;  /* Takes up a portion of the screen width */
+    height: 100vh;
+    background-color: var(--deep-blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Slide it in smoothly when active */
+  .navbar-links.open {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.3rem; /* Larger touch targets for thumbs */
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-cta {
+    display: block; /* Show the button inside the mobile drawer menu */
+    width: 80%;
+    margin-top: 1rem;
   }
 }
 
@@ -707,5 +789,178 @@ body {
 @media (max-width: 480px) {
   .contact-title {
     font-size: 2rem;
+  }
+}
+
+
+/* FOOTER SECTION */
+.footer-container {
+  background-color: var(--deep-blue);
+  color: var(--text-light);
+  padding: 5rem 5% 2rem 5%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.footer-top {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+/* Brand Grid Column Styling */
+.footer-brand {
+  flex: 1.5;
+  max-width: 400px;
+}
+
+.footer-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+}
+
+.footer-logo-icon img {
+  width: 2.5rem;
+  height: auto;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.footer-brand-subtitle {
+  color: var(--vibrant-orange);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Menu Links & Contact Columns Layout */
+.footer-links-col, 
+.footer-contact-col {
+  flex: 1;
+}
+
+.footer-links-col h4, 
+.footer-contact-col h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Accent line marker below footer headers */
+.footer-links-col h4::after, 
+.footer-contact-col h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 30px;
+  height: 2px;
+  background-color: var(--vibrant-orange);
+}
+
+.footer-links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links-col a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+  color: var(--vibrant-orange);
+}
+
+.footer-contact-item {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  margin: 0 0 0.8rem 0;
+}
+
+/* Modern Social Icons Grid Layout */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-light);
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--vibrant-orange);
+  transform: translateY(-2px);
+}
+
+/* Horizontal line divider and copyright bottom row */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  text-align: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Responsive breakdowns */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .footer-brand, .footer-links-col, .footer-contact-col {
+    max-width: 100%;
+    flex: none;
   }
 }

@@ -4,9 +4,7 @@ import '../index.css';
 function Contacts() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    phone: '',
-    message: ''
+    email: '',phone: '',message: ''
   });
 
   const handleChange = (e) => {
