@@ -209,8 +209,8 @@ body {
     var(--deep-blue) 65%
   ), var(--deep-blue);
   
-  border-bottom-left-radius: 60px; /* Sweeping modern curve seen in mockup */
-  border-bottom-right-radius: 60px;
+  /*border-bottom-left-radius: 60px;  Sweeping modern curve seen in mockup 
+  /*border-bottom-right-radius: 60px;*/
   overflow: hidden;
   position: relative;
 }
@@ -270,14 +270,31 @@ body {
   align-items: center;
   z-index: 2;
 }
+.hero-image-fallback img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover; /* Ensures your kids photo scales beautifully without distortion */
+  
+  /* The Magic Fade: 100% visible at the center, fading to completely transparent at the outer edges */
+  -webkit-mask-image: radial-gradient(
+    circle at center, 
+    rgba(0, 0, 0, 0) 100%,      /* Crisp, clear image at the exact middle */
+    rgba(0, 0, 0, 0) 100%,   /* Stays mostly solid across the kids' faces */
+    rgba(0, 0, 0, 0) 100%,   /* Soft drop-off begins */
+    rgba(0, 0, 0, 0) 100%     /* Completely transparent at the very edges */
+  );
+  
+  mask-image: radial-gradient(
+    circle at center, 
+    rgb(0, 0, 0) 0%, 
+    rgb(0, 0, 0) 10%,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
 .hero-image-fallback {
   width: 100%;
-  max-width: 500px;
-  height: 380px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -285,20 +302,27 @@ body {
 .puzzel{
   font-size: 6rem;
   position: absolute;
-  top: 75%;
-  left: 10%;
+  top: 50%;
+  left: 70%;
+}
+.teddy img{
+  max-width: 15rem;
 }
 .teddy{
   font-size: 6rem;
   position: absolute;
-  top: 75%;
-  left: 80%;
+  top: 35%;
+  left: 60%;
+}
+.paintbrush img{
+  max-width: 12rem;
 }
 .paintbrush{
+  max-width: 3rem;
   font-size: 8rem;
   position: absolute;
-  top: 10%;
-  left: 90%;
+  top: 65%;
+  left: 0%;
 }
 :global(.navbar) {
   background-color: transparent !important;
@@ -306,7 +330,18 @@ body {
 
 /* Responsive adjustment */
 @media (max-width: 968px) {
-  .puzzel{
+  .teddy{
+  font-size: 6rem;
+  position: absolute;
+  top: 73%;
+  left: 30%;
+}
+ .puzzel{
+    position: absolute;
+    top: 58%;
+    left: 55%;
+  }
+  /* .puzzel{
     font-size: 4rem;
     position: absolute;
     top: 44%;
@@ -323,7 +358,13 @@ body {
     position: absolute;
     top: 7%;
     left: 83%;
-  }
+  } */
+   /* .paintbrush{
+    font-size: 5rem;
+    position: absolute;
+    top: 87%;
+    left: 44%;
+  } */
   .hero-container {
     flex-direction: column;
     text-align: center;
@@ -348,12 +389,13 @@ body {
 
 
 /* ABOUT SECTION */
-
 .about-section {
-  padding: 6rem 5%;
+  padding: 8rem 5%;
   background-color: var(--warm-cream);
   display: flex;
   justify-content: center;
+  position: relative; /* Essential for placing background decorative icons */
+  overflow: hidden;
 }
 
 .about-container {
@@ -361,7 +403,8 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 5rem;
+  z-index: 5; /* Makes sure text sits on top of decorations */
 }
 
 .about-content {
@@ -370,67 +413,86 @@ body {
 
 .about-badge {
   color: var(--vibrant-orange);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .about-title {
   color: var(--deep-blue);
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
   margin-top: 0;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  margin-bottom: 2rem;
+  line-height: 1.15;
 }
 
 .about-text {
-  color: #555555;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  color: #4a5568;
+  font-size: 1.1rem;
+  line-height: 1.75;
   margin-bottom: 1.5rem;
 }
 
-.about-highlights {
-  margin-top: 2.5rem;
-  display: flex;
-  flex-direction: column;
+/* Horizontal Highlights Row */
+.about-highlights-row {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
-.highlight-item {
+.highlight-item-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  padding: 1.5rem;
+  border-radius: 20px;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  align-items: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.03);
 }
 
-.highlight-icon {
-  font-size: 1.5rem;
-  background: white;
-  padding: 0.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+.highlight-icon-box {
+  font-size: 1.8rem;
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
 }
 
-.highlight-item h4 {
-  margin: 0 0 0.2rem 0;
+.glow-yellow {
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25);
+}
+
+.glow-orange {
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+
+.highlight-card-text h4 {
+  margin: 0 0 0.3rem 0;
   color: var(--deep-blue);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
-.highlight-item p {
+.highlight-card-text p {
   margin: 0;
-  color: #666666;
+  color: #64748b;
   font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-/* Right Side Graphic Layout */
+/* Right Side: 3D Visual Cards Grid Layout */
 .about-visual {
-  flex: 0.8;
+  flex: 1;
   display: flex;
   justify-content: center;
 }
@@ -438,67 +500,193 @@ body {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
   width: 100%;
 }
 
 .stat-card {
-  padding: 2rem 1.5rem;
-  border-radius: 24px;
+  padding: 3rem 2rem;
+  border-radius: 28px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(10, 37, 64, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
 .stat-card h3 {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 800;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -1px;
 }
 
 .stat-card p {
   margin: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.9;
 }
 
-/* Varied Card Themes for a Modern Feel */
-.orange-glow {
-  background: white;
-  border: 2px solid rgba(255, 107, 0, 0.1);
+/* --- Premium 3D Card Visuals --- */
+
+/* Glossy Deep Blue Solid Card */
+.glossy-blue {
+  background: linear-gradient(135deg, var(--deep-blue) 0%, #061524 100%);
+  color: var(--text-light);
+  box-shadow: 0 20px 40px rgba(10, 37, 64, 0.3);
+}
+
+/* Orange Glass/Neon Border Card */
+.orange-border-glow {
+  background: #ffffff;
+  border: 3px solid var(--vibrant-orange);
+  box-shadow: 0 15px 35px rgba(255, 107, 0, 0.1);
+}
+.orange-text {
   color: var(--vibrant-orange);
 }
 
-.blue-bg {
-  background-color: var(--deep-blue);
+/* 3D Radiant Vibrant Orange Solid Card */
+.d-orange {
+  background: linear-gradient(135deg, var(--vibrant-orange) 0%, #e05e00 100%);
   color: var(--text-light);
+  box-shadow: 0 20px 40px rgba(255, 107, 0, 0.35);
 }
 
-.blue-border {
-  background: white;
-  border: 2px solid rgba(10, 37, 64, 0.1);
+/* Blue Glass/Neon Border Card */
+.blue-border-glow {
+  background: #ffffff;
+  border: 3px solid var(--deep-blue);
+  box-shadow: 0 15px 35px rgba(10, 37, 64, 0.1);
+}
+.blue-text {
   color: var(--deep-blue);
 }
 
-.orange-bg {
-  background-color: var(--vibrant-orange);
-  color: var(--text-light);
-  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.2);
+/* Hover Physics Effect */
+.stat-card:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+.glossy-blue:hover {
+  box-shadow: 0 30px 50px rgba(10, 37, 64, 0.45);
+}
+.d-orange:hover {
+  box-shadow: 0 30px 50px rgba(255, 107, 0, 0.5);
 }
 
-/* Responsive Breakdown */
-@media (max-width: 968px) {
+/* Visual diagonal gloss layer effect inside the cards */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+  pointer-events: none;
+}
+
+/* --- Playful Background Confetti / Blob Shapes --- */
+.playful-shape {
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+}
+
+.shape-blob-orange {
+  width: 140px;
+  height: 140px;
+  /* background: orange; */
+  background: radial-gradient(circle, rgba(255,107,0,0.85) 0%, transparent 95%);
+  left: 20px;
+  bottom: 30%;
+  border-radius: 50%;
+}
+
+.shape-blob-purple {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(147,51,234,0.8) 0%, transparent 95%);
+  right: -30px;
+  top: 40%;
+  border-radius: 50%;
+}
+
+.shape-sparkle-1 {
+  font-size: 2rem;
+  color: rgba(10, 37, 64, 0.45);
+  top: 15%;
+  right: 48%;
+  animation: bounceFloating 4s ease-in-out infinite alternate;
+}
+
+.shape-sparkle-2 {
+  font-size: 1.5rem;
+  color: rgba(255, 107, 0, 0.3);
+  bottom: 15%;
+  right: 5%;
+  animation: bounceFloating 3.5s ease-in-out infinite alternate-reverse;
+}
+
+/* --- Animations Definitions --- */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUpIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeUpIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceFloating {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-15px) rotate(10deg); }
+}
+
+/* --- Responsive Layout Adjustments --- */
+@media (max-width: 1024px) {
   .about-container {
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
   }
-  
   .about-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  .about-text {
+    text-align: center;
+  }
+  .about-badge {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-highlights-row {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    padding: 2rem 1.5rem;
+  }
+  .stat-card h3 {
+    font-size: 2.5rem;
   }
 }
 

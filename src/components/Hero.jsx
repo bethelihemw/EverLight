@@ -1,6 +1,10 @@
 import React from 'react';
 import '../index.css';
-// import heroImage from '../../assets/hero-kids.png'; // Uncomment this once you have your kids image asset!
+import heroImage from '../assets/hero.png'; // Uncomment this once you have your kids image asset!
+import pencil from '../assets/pencil.png';
+import math from '../assets/math.png';
+import english from '../assets/english.png';
+
 
 function Hero() {
   return (
@@ -16,13 +20,13 @@ function Hero() {
         </p>
         <button className="hero-cta">EXPLORE PROGRAMS</button>
       </div>
-      <span className="puzzel">🧩</span>
-      <span className="teddy">🧸</span>
-          <span className="paintbrush">🎨</span>
+      <span className="puzzel"><img src={math} alt="" /></span>
+      <span className="teddy"><img src={english} alt="" /></span>
+      <span className="paintbrush"><img src={pencil} alt="" /></span>
       <div className="hero-image-container">
         {/* Placeholder circle or illustration until you drop your image file in */}
         <div className="hero-image-fallback">
-          {/* <img src={heroImage} alt="Happy kids playing at Everlight Academy" /> */}
+          
         </div>
       </div>
     </section>
