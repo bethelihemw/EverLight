@@ -39,9 +39,9 @@ function Footer() {
         {/* Right Column: Contact Details & Social Media */}
         <div className="footer-contact-col">
           <h4>Connect With Us</h4>
-          <p className="footer-contact-item">📞 +123 336-7879</p>
-          <p className="footer-contact-item">✉️ everlight@webite.com</p>
-          <p className="footer-contact-item">📍 Brightside District</p>
+          <p className="footer-contact-item">📞 +251 935-7879</p>
+          <p className="footer-contact-item">✉️ everlight@website.com</p>
+          <p className="footer-contact-item">📍 Ethiopia, Hawassa</p>
           
           <div className="footer-socials">
             <a href="#facebook" aria-label="Facebook" className="social-icon">Facebook</a>

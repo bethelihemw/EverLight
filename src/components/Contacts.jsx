@@ -37,8 +37,8 @@ function Contacts() {
             <div className="info-card">
               <span className="info-icon">📍</span>
               <div>
-                <h4>Visit Our Campus</h4>
-                <p>123 Education Lane, Brightside District</p>
+                <h4>Visit Our Academy</h4>
+                <p>Ethiopia, Hawassa</p>
               </div>
             </div>
 
@@ -46,7 +46,7 @@ function Contacts() {
               <span className="info-icon">📞</span>
               <div>
                 <h4>Call Our Office</h4>
-                <p>+123 335-7879 / +123 336-7879</p>
+                <p>+251 935-787-999 / +251 936-787-999</p>
               </div>
             </div>
 
@@ -54,7 +54,7 @@ function Contacts() {
               <span className="info-icon">✉️</span>
               <div>
                 <h4>Email Admissions</h4>
-                <p>everlight@website.com</p>
+                <p>everlightacademy@website.com</p>
               </div>
             </div>
 
@@ -107,7 +107,7 @@ function Contacts() {
                 name="phone" 
                 value={formData.phone} 
                 onChange={handleChange} 
-                placeholder="(123) 456-7890" 
+                placeholder="+251-935-787-999" 
               />
             </div>
 
